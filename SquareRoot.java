@@ -1,32 +1,48 @@
+import java.util.Scanner;
+
 public class SquareRoot
 {
-  private int square;
-  private int error;
-  private int figures;
+  private static int number;
+  private static int guess;
+  private static int average;
+  private static int newNumber;
   
-  public SquareRoot(int square, int error, int figures)
+  public int getNumber()
   {
-    this.square = square;
-    this.error = error;
-    this.figures = figures;
+    return number;
   }
   
-  public int findSquareRoot()
+  public int getGuess()
   {
-    for(int x = 0; x < this.square;)
+    return guess;
+  }
+  
+  public void findSquareRoot()
+  {
+    if(number == newNumber)
     {
-      x = figures*(10)^2;
-      x = (1/2)*(x + (square/x));
+      guess = (1/2)*(guess + (number/guess));
+      newNumber = guess*guess;
     }
-    return this.square;
   }
-  
+  //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   public static void main(String[] args)
   {
-    SquareRoot bullshit = new SquareRoot(144, 2, 4);
+    SquareRoot bullshit = new SquareRoot();
     
-    System.out.println(bullshit.findSquareRoot());
+    Scanner in = new Scanner(System.in);
+    
+    System.out.println("What number would you like to find the square root of?");
+    number = in.nextInt();
+    
+    System.out.println("Please enter a number that is a guess of the square root:");
+    guess = in.nextInt();
+    
+    bullshit.getNumber();
+    bullshit.getGuess();
+    bullshit.findSquareRoot();
   }
 }
+
   
   
