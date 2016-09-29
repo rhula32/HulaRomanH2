@@ -1,48 +1,61 @@
-import java.util.Scanner;
+import java.util.Scanner; //Needed for user input
 
+//Declare class name
 public class SquareRoot
 {
-  private static int number;
-  private static int guess;
-  private static int average;
-  private static int newNumber;
+  private static double number;
+  private static double guess;
+  private static double error;
   
-  public int getNumber()
+  //Declare the main class
+  public static void main(String[] args)
+  {
+    //Constructor of new object in class
+    SquareRoot bullshit = new SquareRoot();
+    
+    //Needed for user input
+    Scanner in = new Scanner(System.in);
+    
+    //Ask the user for the number they'd like to find the square root of
+    System.out.println("What number would you like to find the square root of?");
+    double number = in.nextDouble();
+    
+    //Ask the user for the amount of error they'd prefer
+    System.out.println("How much error will you accept?");
+    double error = in.nextDouble();
+    
+    //CALLING ALL METHODS!
+    bullshit.getNumber();
+    bullshit.getError();
+    System.out.println(bullshit.findSquareRoot());
+    
+  }
+  
+  //Create the findSquareRoot method; This will obtain the square root of the number the user entered, adjusted for error.
+  public static double findSquareRoot()
+  {
+    guess = (0.5)*number;
+    
+    if((number - (guess*guess)) < error)
+    {
+      return guess;
+    }
+    else
+    {
+      guess = (0.5)*(guess + number/guess);
+      return findSquareRoot();
+    }
+  }
+  
+  public static double getNumber()
   {
     return number;
   }
   
-  public int getGuess()
+  public static double getError()
   {
-    return guess;
-  }
-  
-  public void findSquareRoot()
-  {
-    if(number == newNumber)
-    {
-      guess = (1/2)*(guess + (number/guess));
-      newNumber = guess*guess;
-    }
-  }
-  //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  public static void main(String[] args)
-  {
-    SquareRoot bullshit = new SquareRoot();
-    
-    Scanner in = new Scanner(System.in);
-    
-    System.out.println("What number would you like to find the square root of?");
-    number = in.nextInt();
-    
-    System.out.println("Please enter a number that is a guess of the square root:");
-    guess = in.nextInt();
-    
-    bullshit.getNumber();
-    bullshit.getGuess();
-    bullshit.findSquareRoot();
+    return error;
   }
 }
-
-  
+    
   
